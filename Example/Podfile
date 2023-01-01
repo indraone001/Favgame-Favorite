@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'Favgame-Favorite_Example' do
+  pod 'Favgame-Favorite', :path => '../'
+
+  target 'Favgame-Favorite_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
