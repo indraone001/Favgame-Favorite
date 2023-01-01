@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Favgame_core
+import Favgame_Core
 import Swinject
 
 public class FavoriteRouter {
