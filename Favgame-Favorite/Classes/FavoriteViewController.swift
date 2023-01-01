@@ -12,7 +12,7 @@ import RealmSwift
 import Favgame_Core
 import Favgame_Detail
 
-class FavoriteViewController: UIViewController {
+public class FavoriteViewController: UIViewController {
   
   // MARK: - Properties
   var getFavoriteGameUseCase: GetFavoritesGameUseCase?
@@ -24,17 +24,17 @@ class FavoriteViewController: UIViewController {
     table.backgroundColor = UIColor(rgb: Constant.rhinoColor)
     table.isSkeletonable = true
     table.showsVerticalScrollIndicator = false
-    table.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell.identifier)
+    table.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell().identifier)
     return table
   }()
   
   // MARK: - Life Cycle
-  override func viewDidAppear(_ animated: Bool) {
+  public override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     self.tabBarController?.tabBar.isHidden = false
   }
   
-  override func viewDidLoad() {
+  public override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor(rgb: Constant.rhinoColor)
     navigationItem.title = "Favorite"
@@ -93,7 +93,7 @@ class FavoriteViewController: UIViewController {
 
 extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if ((gameList?.isEmpty) != false) {
       let message = "This page is empty.\nFind your favorite game."
       self.favoriteTableView.setEmptyMessage(message)
@@ -103,8 +103,8 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     return gameList?.count ?? 0
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: GameTableViewCell.identifier, for: indexPath) as? GameTableViewCell else {
+  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: GameTableViewCell().identifier, for: indexPath) as? GameTableViewCell else {
       return UITableViewCell()
     }
     cell.layer.cornerRadius = 8
@@ -117,11 +117,11 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     return cell
   }
   
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 120
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let game = gameList else { return }
     let selectedGameId = game[indexPath.row].id
     
@@ -141,7 +141,7 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     present(nav, animated: true)
   }
   
-  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+  public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     let verticalPadding: CGFloat = 8
     
     let maskLayer = CALayer()

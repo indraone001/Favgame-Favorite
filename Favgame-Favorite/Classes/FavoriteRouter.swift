@@ -7,9 +7,11 @@
 
 import Foundation
 import Favgame_core
+import Swinject
 
 public class FavoriteRouter {
-  let container: Container = {
+  public init() {}
+  public let container: Container = {
     let container = Injection().container
     
     container.register(FavoriteViewController.self) { resolver in
